@@ -39,7 +39,7 @@
   align-items: center;
 }
 .grid-5:hover {
-  border: 1px solid wheat; /* Add border style */
+  background-color:wheat;
 }
 
 .input-container-home {
