@@ -1,0 +1,32 @@
+.container {
+  max-width: 1200px;
+  display: block;
+  margin: 0px auto;
+}
+.p-5 {
+  padding:5px
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.p-v-15{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+input {
+  border: none; /* Remove default border */
+  outline: none; /* Remove default outline (focus border) */
+ /* Add any additional styles or modifications as needed */
+  /* marg: 10px; */
+  min-height: 20px;
+  padding:10px;
+  width: 96%;
+}
+input::placeholder {
+  margin-left:10px;
+ /* Add any additional styles or modifications as needed */
+}
+p {
+  margin-bottom: 5px;
+}

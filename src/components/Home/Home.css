@@ -1,0 +1,73 @@
+.home-container {
+  display: flex;
+  width: 100%;
+  margin-top: 100px;
+  border: 1px solid #ddd; /* Add border style */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border-radius: 5px;
+}
+.tool-container-home {
+  width: 60%;
+  padding: 30px 15px;
+  background-color: lightgray;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+}
+.qr-container-home {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+}
+.grid-container-home {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: white;
+  border: 1px solid #ddd; /* Add border style */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border-radius: 10px;
+  border-radius: 5px;
+}
+
+.grid-5 {
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+.grid-5:hover {
+  background-color:lightgrey;
+}
+
+.input-container-home {
+  width: 90%;
+}
+.active-grid-home {
+  background-color: lightgray;
+}
+.opacity-3 {
+    opacity: .3;
+}
+.download-qr-container-home{
+    display: flex;
+    justify-content: space-evenly;
+}
+.png-button-home{
+    background-color: chocolate;
+    padding: 30px 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+
+}
+.svg-button-home{
+    background-color:blueviolet;
+    padding: 30px 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+
+}
