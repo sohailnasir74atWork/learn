@@ -52,7 +52,7 @@ const Gradient = () => {
   return (
     <div>
       <div className="color-picker-container">
-        <input type="text" value='' readOnly className="input-color-home" />
+        <input type="text" value={gradientColor} readOnly className="input-color-home" />
         <GradientDemo gradientColor={gradientColor} onClick={handleDemoClick} />
         <div
           className="color-picker"
