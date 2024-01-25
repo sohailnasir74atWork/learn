@@ -1,28 +1,43 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import QRCodeStyling from "qr-code-styling";
 
-const QRCodeReact = ({ url, img }) => {
+const QRCodeReact = ({ prop }) => {
+  const { data, img, backgroundColor, qrColor } = prop;
+
   const canvasRef = useRef(null);
+  const [qrCode, setQrCode] = useState(null);
+
+  function handleDownloadClick(typeOfImg) {
+    if (qrCode && qrCode.download) {
+      qrCode.download({
+        name: 'MyQRCode',
+        extension: typeOfImg,
+      })
+        .then(() => {})
+        .catch((error) => {});
+    } else {
+      console.error("Download function not available in QRCodeStyling.");
+    }
+  }
 
   useEffect(() => {
-    if (url !== null) {
-      // Clear the previous content of the canvas element
+    if (data !== null) {
       const canvasElement = canvasRef.current;
       while (canvasElement.firstChild) {
         canvasElement.removeChild(canvasElement.firstChild);
       }
 
-      const qrCode = new QRCodeStyling({
+      const newQrCode = new QRCodeStyling({
         width: 300,
         height: 300,
-        data: url,
+        data: data,
         image: img,
         dotsOptions: {
-          color: "#4267b2",
-          type: "rounded",
+          color: qrColor,
+          type: "",
         },
         backgroundOptions: {
-          color: "",
+          color: backgroundColor,
         },
         imageOptions: {
           crossOrigin: "anonymous",
@@ -30,12 +45,22 @@ const QRCodeReact = ({ url, img }) => {
         },
       });
 
-      // Append the new QR code to the cleared canvas element
-      qrCode.append(canvasElement);
+      setQrCode(newQrCode);
+      newQrCode.append(canvasElement);
     }
-  }, [url, img, canvasRef]);
+  }, [data, img, canvasRef, backgroundColor, qrColor]);
 
-  return <div ref={canvasRef}></div>;
+  return (
+    <div>
+      <div ref={canvasRef}></div>
+      <div className={`download-qr-container-home p-v-15 ${data ? "" : "opacity-3"}`}>
+        <span className="p-v-15 png-button-home" onClick={()=>handleDownloadClick('png')}>
+          Download PNG
+        </span>
+        <span className="p-v-15 svg-button-home" onClick={()=>handleDownloadClick('webp')}>Download WEBP</span>
+      </div>
+    </div>
+  );
 };
 
 export default QRCodeReact;

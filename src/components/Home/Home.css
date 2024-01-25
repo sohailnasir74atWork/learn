@@ -2,10 +2,13 @@
   display: flex;
   width: 100%;
   margin-top: 100px;
-  border: 1px solid #ddd; /* Add border style */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border: 1px solid #ddd;
+  /* Add border style */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  /* Add box shadow */
   border-radius: 5px;
 }
+
 .tool-container-home {
   width: 60%;
   padding: 30px 15px;
@@ -15,20 +18,27 @@
   flex-direction: column;
   align-items: center;
 }
+
 .qr-container-home {
   width: 40%;
   display: flex;
   flex-direction: column;
   padding: 40px 30px;
+  justify-content: flex-start !important;
+  align-items: center;
+
 }
+
 .grid-container-home {
   width: 90%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   background-color: white;
-  border: 1px solid #ddd; /* Add border style */
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border: 1px solid #ddd;
+  /* Add border style */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  /* Add box shadow */
   border-radius: 10px;
   border-radius: 5px;
 }
@@ -37,37 +47,127 @@
   width: 20%;
   display: flex;
   align-items: center;
+  cursor: pointer;
+
 }
+
 .grid-5:hover {
-  background-color:wheat;
+  background-color: wheat;
 }
 
 .input-container-home {
   width: 90%;
 }
+
 .active-grid-home {
   background-color: lightgray;
 }
+
 .opacity-3 {
-    opacity: .3;
+  opacity: .3;
 }
-.download-qr-container-home{
-    display: flex;
-    justify-content: space-evenly;
+
+.download-qr-container-home {
+  display: flex;
+  justify-content: space-evenly;
 }
-.png-button-home{
-    background-color: chocolate;
-    padding: 30px 10px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+
+.png-button-home {
+  background-color: chocolate;
+  padding: 30px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 
 }
-.svg-button-home{
-    background-color:blueviolet;
-    padding: 30px 10px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
 
+.svg-button-home {
+  background-color: blueviolet;
+  padding: 30px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+
+}
+.option-container-home {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  width: 90%;
+  padding: 30px 15px;
+
+
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  /* padding: 10px; */
+  min-height: 60px;
+  border-radius: 5px;
+
+
+}
+
+.icon {
+  margin: 0 5px;
+  padding:10px
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: white;
+  padding: 30px 15px;
+  min-height: 1000px;
+
+
+  
+}
+.align-right{
+  display: flex;
+  justify-content: end;
+  width: 100%
+}
+
+/* Add these styles to your Home.css or relevant stylesheet */
+.input-color-home{
+  width: 70%;
+  height: 40px;
+  border: .5px solid lightgrey;
+}
+.color-demo {
+  width: 30%;
+  height: 60px;
+  border-radius: 5px;
+  margin-left: 10px; /* Adjust the margin as needed */
+  cursor: pointer;
+  border: .5px solid lightgray;
+}
+
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative; /* Set position to relative */
+}
+
+.color-picker {
+  position: absolute; /* Set position to absolute */
+  top: 100%; /* Position it below the color demo */
+  right: 0;
+  z-index: 1;
+}
+.toggle-button{
+  color: gray;
+  font-size: 30px;
+  padding: 10px 10px 10px 0px;
+  display: flex;
+  align-items: center;
+}
+.font-m{
+  font-size: 14px;
+  font-weight: bold;
+  
 }

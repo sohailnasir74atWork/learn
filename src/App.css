@@ -28,5 +28,10 @@ input::placeholder {
  /* Add any additional styles or modifications as needed */
 }
 p {
-  margin-bottom: 5px;
+  margin: 5px 0px;
+}
+
+.block {
+  display: block;
+  padding: 10px 0px
 }

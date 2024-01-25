@@ -1,43 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
-import {
-  FaLink,
-  FaPhone,
-  FaTextWidth,
-  FaSms,
-  FaMailBulk,
-} from "react-icons/fa";
 import Link from "./HomeComponents/Link";
 import qrPlaceHolder from "./HomeComponents/qrPlaceHolder.svg";
 import QRCodeReact from "./HomeComponents/qrgentool";
-
+import { qrTypes } from "./HomeComponents/ToolList";
+import Properties from "./HomeComponents/Properties";
 const Home = () => {
   const [activeTool, setActiveTool] = useState("link");
-  const [url, setUrl] = useState("");
+  const [data, setData] = useState(null);
   const [img, setImg] = useState();
+  const [clearInput, setClearInput] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+  const [qrColor, setQrColor] = useState("#000000");
 
-  const qrTypes = [
-    { id: "link", content: ["Link", <FaLink />] },
-    { id: "email", content: ["E-mail", <FaMailBulk />] },
-    { id: "call", content: ["Call", <FaPhone />] },
-    { id: "sms", content: ["SMS", <FaSms />] },
-    { id: "text", content: ["Text", <FaTextWidth />] },
-    { id: "vcard", content: ["V-Card", <FaLink />] },
-    { id: "wifi", content: ["Wifi", <FaMailBulk />] },
-    { id: "whatsapp", content: ["WhatsApp", <FaPhone />] },
-    { id: "paypal", content: ["PayPal", <FaSms />] },
-    { id: "events", content: ["Event", <FaTextWidth />] },
-    { id: "pdf", content: ["PDF", <FaLink />] },
-    { id: "app", content: ["App", <FaMailBulk />] },
-    { id: "img", content: ["IMG", <FaPhone />] },
-    { id: "vedio", content: ["Vedio", <FaSms />] },
-    { id: "social", content: ["Social", <FaTextWidth />] },
-  ];
-
+  const [showError, setShowError] = useState(false);
+  useEffect(() => {
+    if (data === "" || !data) {
+      setShowError(true);
+    } else setShowError(false);
+  }, [data]);
+  console.log(data);
   const handleToolTypeClick = (toolId) => {
     setActiveTool(toolId);
+    setData("");
+    setClearInput(true);
   };
-
   return (
     <div className="container">
       <div className="home-container">
@@ -56,26 +43,29 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Link prop={{ url, setUrl }} />
+          <Link prop={{ data, setData, clearInput, showError }} />
+          <Properties prop={{ setBackgroundColor, backgroundColor, qrColor, setQrColor }} />
         </div>
         <div className="qr-container-home center">
           <div className="center">
-            {!url && (
-              <img
-                src={qrPlaceHolder}
-                alt="qrSvgPlaceHolder"
-                className="opacity-3"
-              />
+            {!data && (
+              <div>
+                <img
+                  src={qrPlaceHolder}
+                  alt="qrSvgPlaceHolder"
+                  className="opacity-3"
+                />
+                <div
+                  className={`download-qr-container-home p-v-15 ${
+                    data ? "" : "opacity-3"
+                  }`}
+                >
+                  <span className="p-v-15 png-button-home">Download PNG</span>
+                  <span className="p-v-15 svg-button-home">Download WEBP</span>
+                </div>
+              </div>
             )}
-            {url && <QRCodeReact url={url} img={img} />}
-          </div>
-          <div
-            className={`download-qr-container-home p-v-15 ${
-              url ? "" : "opacity-3"
-            }`}
-          >
-            <span className="p-v-15 png-button-home">Download PNG</span>
-            <span className="p-v-15 svg-button-home">Download SVG</span>
+            {data && <QRCodeReact prop={{ data, img, backgroundColor, qrColor }} />}
           </div>
         </div>
       </div>

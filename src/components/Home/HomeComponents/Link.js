@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Home.css";
 
 const Link = ({ prop }) => {
-  const { setUrl } = prop;
-  const [value, setValue] = useState(""); // Add state for input value
+  const { setData, clearInput, showError } = prop;
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (clearInput) {
+      setValue("");
+    }
+  }, [clearInput]);
 
   const handleInputChange = (event) => {
     const updatedValue = event.target.value;
-    setValue(updatedValue); // Update the local state
-    setUrl(updatedValue);
+    setValue(updatedValue);
   };
+
+  const handleBlur = () => {
+    setData(value); // Call setData on focus out
+  };
+
+  console.log(showError);
 
   return (
     <div className="input-container-home p-v-15">
@@ -18,8 +29,11 @@ const Link = ({ prop }) => {
         type="text"
         value={value}
         onChange={handleInputChange}
-        placeholder="Enter URL"
+        onBlur={handleBlur} // Call handleBlur on focus out
+        placeholder="https://"
       />
+      {showError && <p style={{ color: "tomato" }}>This field is required</p>}
+      <p>Your QR code will open this URL.</p>
     </div>
   );
 };
