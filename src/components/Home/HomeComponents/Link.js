@@ -20,7 +20,7 @@ const Link = ({ prop }) => {
     setData(value); // Call setData on focus out
   };
 
-  console.log(showError);
+  // console.log(showError);
 
   return (
     <div className="input-container-home p-v-15">

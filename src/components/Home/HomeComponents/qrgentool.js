@@ -1,18 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import QRCodeStyling from "qr-code-styling";
+import { parseLinearGradient } from "./QrHelper";
+import qrPlaceHolder from "./qrPlaceHolder.svg";
 
 const QRCodeReact = ({ prop }) => {
-  const { data, img, backgroundColor, qrColor } = prop;
+  const {
+    data,
+    img,
+    backgroundColor,
+    qrColor,
+    solidColorBackground,
+    solidColorQR,
+  } = prop;
+  const [qrCode, setQrCode] = useState(null);
+  const gradientBackground = parseLinearGradient(backgroundColor);
+  const gradientQR = parseLinearGradient(qrColor);
 
   const canvasRef = useRef(null);
-  const [qrCode, setQrCode] = useState(null);
 
   function handleDownloadClick(typeOfImg) {
     if (qrCode && qrCode.download) {
-      qrCode.download({
-        name: 'MyQRCode',
-        extension: typeOfImg,
-      })
+      qrCode
+        .download({
+          name: "MyQRCode",
+          extension: typeOfImg,
+        })
         .then(() => {})
         .catch((error) => {});
     } else {
@@ -33,11 +45,22 @@ const QRCodeReact = ({ prop }) => {
         data: data,
         image: img,
         dotsOptions: {
-          color: qrColor,
-          type: "",
+          ...(solidColorQR
+            ? { color: qrColor }
+            : {
+                gradient: {
+                  colorStops: gradientQR,
+                },
+              }),
         },
         backgroundOptions: {
-          color: backgroundColor,
+          ...(solidColorBackground
+            ? { color: backgroundColor }
+            : {
+                gradient: {
+                  colorStops: gradientBackground,
+                },
+              }),
         },
         imageOptions: {
           crossOrigin: "anonymous",
@@ -53,11 +76,28 @@ const QRCodeReact = ({ prop }) => {
   return (
     <div>
       <div ref={canvasRef}></div>
-      <div className={`download-qr-container-home p-v-15 ${data ? "" : "opacity-3"}`}>
-        <span className="p-v-15 png-button-home" onClick={()=>handleDownloadClick('png')}>
+     {!data && <img
+                  src={qrPlaceHolder}
+                  alt="qrSvgPlaceHolder"
+                  className="opacity-3"
+                />}
+      <div
+        className={`download-qr-container-home p-v-15 ${
+          data ? "" : "opacity-3"
+        }`}
+      >
+        <span
+          className="p-v-15 png-button-home"
+          onClick={() => handleDownloadClick("png")}
+        >
           Download PNG
         </span>
-        <span className="p-v-15 svg-button-home" onClick={()=>handleDownloadClick('webp')}>Download WEBP</span>
+        <span
+          className="p-v-15 svg-button-home"
+          onClick={() => handleDownloadClick("webp")}
+        >
+          Download WEBP
+        </span>
       </div>
     </div>
   );

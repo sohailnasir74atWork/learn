@@ -19,7 +19,7 @@ input {
   outline: none; /* Remove default outline (focus border) */
  /* Add any additional styles or modifications as needed */
   /* marg: 10px; */
-  min-height: 20px;
+  max-height: 40px;
   padding:10px;
   width: 96%;
 }
@@ -34,4 +34,9 @@ p {
 .block {
   display: block;
   padding: 10px 0px
+}
+
+.sub-heading{
+  font-weight: 900;
+  color:blueviolet
 }

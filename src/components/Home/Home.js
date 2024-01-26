@@ -12,14 +12,18 @@ const Home = () => {
   const [clearInput, setClearInput] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [qrColor, setQrColor] = useState("#000000");
-
+  const [solidColorBackground, setSolidColorBackground] = useState(true);
+  const [solidColorQR, setSolidColorQR] = useState(true);
   const [showError, setShowError] = useState(false);
+
+
+
   useEffect(() => {
     if (data === "" || !data) {
       setShowError(true);
     } else setShowError(false);
   }, [data]);
-  console.log(data);
+
   const handleToolTypeClick = (toolId) => {
     setActiveTool(toolId);
     setData("");
@@ -43,29 +47,24 @@ const Home = () => {
               </div>
             ))}
           </div>
+
+          {/* TYPES OF QRs */}
           <Link prop={{ data, setData, clearInput, showError }} />
-          <Properties prop={{ setBackgroundColor, backgroundColor, qrColor, setQrColor }} />
+
+
+          {/* STYLES AND CUSTOMIZATION */}
+          <Properties prop={{ setBackgroundColor, backgroundColor, qrColor, setQrColor, setSolidColorBackground, solidColorBackground, setSolidColorQR, solidColorQR }} />
+
+
+
+          
         </div>
         <div className="qr-container-home center">
           <div className="center">
-            {!data && (
-              <div>
-                <img
-                  src={qrPlaceHolder}
-                  alt="qrSvgPlaceHolder"
-                  className="opacity-3"
-                />
-                <div
-                  className={`download-qr-container-home p-v-15 ${
-                    data ? "" : "opacity-3"
-                  }`}
-                >
-                  <span className="p-v-15 png-button-home">Download PNG</span>
-                  <span className="p-v-15 svg-button-home">Download WEBP</span>
-                </div>
-              </div>
-            )}
-            {data && <QRCodeReact prop={{ data, img, backgroundColor, qrColor }} />}
+  
+
+            {/* QR GENERATOR TOOL */}
+            <QRCodeReact prop={{ data, img, backgroundColor, qrColor, setSolidColorBackground, solidColorBackground,solidColorQR, setSolidColorQR }} />
           </div>
         </div>
       </div>
